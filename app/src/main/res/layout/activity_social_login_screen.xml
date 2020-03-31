@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SocialLoginAndLanguage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.50">
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/twitterLoginButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_login_screen_bg" />
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="143dp"
+            android:layout_marginTop="132dp"
+            android:src="@drawable/ic_logo_inv" />
+
+        <TextView
+            android:id="@+id/appNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logoImageView"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="TownFeed"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appNameTextView"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/app_tagline"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.50"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Login with"
+            android:textColor="@color/dsgn_color_grey"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:background="@color/dsgn_color_grey" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/googleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="32dp"
+                android:padding="8dp"
+                android:drawableLeft="@drawable/ic_google_login"
+                android:drawablePadding="8dp"
+                android:gravity="center"
+                android:text="Google"
+                android:textAllCaps="false"
+                android:textColor="@color/dsgn_color_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/facebookTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:drawableLeft="@drawable/ic_facebook_login"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:text="Facebook"
+                android:textAllCaps="false"
+                android:textColor="@color/dsgn_color_grey"
+                app:layout_constraintBottom_toBottomOf="@+id/googleTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/googleTextView"
+                app:layout_constraintTop_toTopOf="@+id/googleTextView" />
+
+            <TextView
+                android:id="@+id/twitterTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_twitter_login"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:text="Twitter"
+                android:textAllCaps="false"
+                android:textColor="@color/dsgn_color_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/googleTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/googleTextView"
+                app:layout_constraintTop_toBottomOf="@+id/googleTextView"
+                app:layout_constraintVertical_bias="0.327" />
+
+            <TextView
+                android:id="@+id/phoneTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:drawableLeft="@drawable/ic_phone_login"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:text="Phone"
+                android:textAllCaps="false"
+                android:textColor="@color/dsgn_color_grey"
+                app:layout_constraintBottom_toBottomOf="@+id/twitterTextView"
+                app:layout_constraintEnd_toEndOf="@+id/facebookTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/facebookTextView"
+                app:layout_constraintTop_toTopOf="@+id/twitterTextView"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebookLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

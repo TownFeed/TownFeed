@@ -1,0 +1,94 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">TownFeed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">566988454118904</string>
+    <string name="fb_login_protocol_scheme">fb566988454118904</string>
+    <string name="app_tagline">App tag line goes here</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY" tools:ignore="ExtraTranslation">IZg6tLljPJN3HSMjZ3RqxwwJW</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET" tools:ignore="ExtraTranslation">I6pElYuUuKxQPF938YURrAX0bxhNxGEkxXL9TptvQj0DZn92jy</string>
+
+    <string-array name="drawerCategoryNumber">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="hindiCategoryNameList">
+        <item>नौकरी</item>
+        <item>खेल</item>
+        <item>मनोरंजन</item>
+        <item>टैकनोलजी</item>
+        <item>शिक्षा</item>
+        <item>राजनीति</item>
+        <item>बॉलीवुड</item>
+        <item>व्यापार</item>
+        <item>ट्रेंडिंग</item>
+        <item>स्वास्थ्य</item>
+        <item>लाइफस्टाइल</item>
+        <item>वयस्क</item>
+    </string-array>
+
+    <string-array name="hindiCategoryIDList">
+
+        <item>1</item>
+        <item>9</item>
+        <item>12</item>
+        <item>11</item>
+        <item>22</item>
+        <item>18</item>
+        <item>10</item>
+        <item>20</item>
+        <item>5</item>
+        <item>19</item>
+        <item>24</item>
+        <item>21</item>
+
+    </string-array>
+
+    <string-array name="engCategoryNameList">
+        <item>Jobs</item>
+        <item>Sports</item>
+        <item>Entertainment</item>
+        <item>Tech</item>
+        <item>Education</item>
+        <item>Politics</item>
+        <item>Bollywood</item>
+        <item>Business</item>
+        <item>Trending</item>
+        <item>Health</item>
+        <item>LifeStyle</item>
+        <item>Adult</item>
+
+    </string-array>
+
+    <string-array name="engCategoryIDList">
+
+        <item>17</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>23</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>7</item>
+
+    </string-array>
+
+
+</resources>

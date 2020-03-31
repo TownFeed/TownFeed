@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "826912748678",
+    "firebase_url": "https://townfeed-85684.firebaseio.com",
+    "project_id": "townfeed-85684",
+    "storage_bucket": "townfeed-85684.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:826912748678:android:363d8ee8200ac8a7414d07",
+        "android_client_info": {
+          "package_name": "com.townfeednews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "826912748678-enjsbf2nloiufilnmn67r98ovk2coa4v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.townfeednews",
+            "certificate_hash": "a77b12d6f8392a1afab1eccaf58d0e66eb8211bd"
+          }
+        },
+        {
+          "client_id": "826912748678-d7hsk8fnlb242l795mcl86bbkikkfu58.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGhFBXheN5nMvXpaI6BBkpVgVZK-dDMMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "826912748678-leaq653nre2mhme3ugjt13sd7kq5tmrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
