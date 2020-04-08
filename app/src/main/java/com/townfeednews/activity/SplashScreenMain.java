@@ -36,6 +36,7 @@ public class SplashScreenMain extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen_main);
         checkInternetConnection();
         getSupportActionBar().hide();
+
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 

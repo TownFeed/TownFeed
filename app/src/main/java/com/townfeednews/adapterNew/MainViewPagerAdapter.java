@@ -28,7 +28,7 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
                 AppConstant.webViewFragment = new WebViewFragment();
                 return AppConstant.webViewFragment;
         }
-        return new NewsContentFragment();
+        return new NewsContentFragment(refreshDataListener);
     }
 
     @Override

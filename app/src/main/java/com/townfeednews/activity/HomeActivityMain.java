@@ -318,6 +318,7 @@ public class HomeActivityMain extends AppCompatActivity {
                     mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), refreshDataListener);
                     mainViewPager.setAdapter(mainViewPagerAdapter);
                     mainViewPager.setCurrentItem(0);
+
                     AppConstant.webViewFragment.setCurrentItem(newsResponseDataList.get(0).getPermalink());
                     Log.d(TAG, "onResponse: checking body Data " + newsResponseDataList.get(0).getPermalink());
                     Log.d(TAG, "onResponse: checking title " + newsResponseDataList.get(0).getTitle());
