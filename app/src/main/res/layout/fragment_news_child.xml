@@ -121,6 +121,16 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <ImageView
+                    android:id="@+id/speakTextImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_text_to_speak" />
+
 
             </RelativeLayout>
 

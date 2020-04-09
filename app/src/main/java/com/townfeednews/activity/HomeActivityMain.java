@@ -779,4 +779,13 @@ public class HomeActivityMain extends AppCompatActivity {
             }
         }
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (AppConstant.textToSpeech != null) {
+            AppConstant.textToSpeech.stop();
+        }
+    }
 }

@@ -81,42 +81,43 @@ public class NewsContentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news_content, container, false);
         initView(view);
 
-
-        if (AppPrefsMain.getUserLanguage(getContext()).equalsIgnoreCase("eng")) {
-            textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-                @Override
-                public void onInit(int status) {
-                    if (status != TextToSpeech.ERROR) {
-                        textToSpeech.setSpeechRate(0.8f);
+        if (AppPrefsMain.getReadNewsEnabled(getContext())) {
+            if (AppPrefsMain.getUserLanguage(getContext()).equalsIgnoreCase("eng")) {
+                textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status != TextToSpeech.ERROR) {
+                            textToSpeech.setSpeechRate(0.8f);
 //                    textToSpeech.setSpeechRate(0.8f);
-                        textToSpeech.setPitch(0.8f);
+                            textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setLanguage(Locale.US);
-                        textToSpeech.setLanguage(Locale.US);
-                        String text = newsResponseDataList.get(0).getTitle();
-                        textToSpeech.speak(text + "\n\n" + newsResponseDataList.get(0).getDetails(), TextToSpeech.QUEUE_FLUSH, null);
-                        Log.d(TAG, "onPageSelected: news Details " + newsResponseDataList.get(0).getDetails());
+                            textToSpeech.setLanguage(Locale.US);
+                            String text = newsResponseDataList.get(0).getTitle();
+                            textToSpeech.speak(text + "\n\n" + newsResponseDataList.get(0).getDetails(), TextToSpeech.QUEUE_FLUSH, null);
+                            Log.d(TAG, "onPageSelected: news Details " + newsResponseDataList.get(0).getDetails());
+                        }
                     }
-                }
-            });
+                });
 
-        } else {
-            textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-                @Override
-                public void onInit(int status) {
-                    if (status != TextToSpeech.ERROR) {
-                        textToSpeech.setSpeechRate(0.8f);
+            } else {
+                textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        if (status != TextToSpeech.ERROR) {
+                            textToSpeech.setSpeechRate(0.8f);
 //                    textToSpeech.setSpeechRate(0.8f);
-                        textToSpeech.setPitch(0.8f);
+                            textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setLanguage(Locale.US);
-                        textToSpeech.setLanguage(Locale.forLanguageTag("hin"));
-                        String text = newsResponseDataList.get(0).getTitle();
-                        textToSpeech.speak(text + "\n\n" + newsResponseDataList.get(0).getDetails(), TextToSpeech.QUEUE_FLUSH, null);
-                        Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+                            textToSpeech.setLanguage(Locale.forLanguageTag("hin"));
+                            String text = newsResponseDataList.get(0).getTitle();
+                            textToSpeech.speak(text + "\n\n" + newsResponseDataList.get(0).getDetails(), TextToSpeech.QUEUE_FLUSH, null);
+                            Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+                        }
                     }
-                }
-            });
+                });
+            }
         }
         return view;
     }
@@ -136,47 +137,49 @@ public class NewsContentFragment extends Fragment {
 
             @Override
             public void onPageSelected(final int position) {
-                if (textToSpeech.isSpeaking()) {
-                    textToSpeech.stop();
-                }
-                if (AppPrefsMain.getUserLanguage(getContext()).equalsIgnoreCase("eng")) {
-                    textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-                        @Override
-                        public void onInit(int status) {
-                            if (status != TextToSpeech.ERROR) {
-                                textToSpeech.setSpeechRate(0.8f);
+                if (AppPrefsMain.getReadNewsEnabled(getContext())) {
+                    if (textToSpeech.isSpeaking()) {
+                        textToSpeech.stop();
+                    }
+                    if (AppPrefsMain.getUserLanguage(getContext()).equalsIgnoreCase("eng")) {
+                        textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+                            @Override
+                            public void onInit(int status) {
+                                if (status != TextToSpeech.ERROR) {
+                                    textToSpeech.setSpeechRate(0.8f);
 //                    textToSpeech.setSpeechRate(0.8f);
-                                textToSpeech.setPitch(0.8f);
+                                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setLanguage(Locale.US);
-                                textToSpeech.setLanguage(Locale.US);
-                                String text = newsResponseDataList.get(position).getTitle();
-                                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-                                Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+                                    textToSpeech.setLanguage(Locale.US);
+                                    String text = newsResponseDataList.get(position).getTitle();
+                                    textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                                    Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+                                }
                             }
-                        }
-                    });
+                        });
 
-                } else {
-                    textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-                        @Override
-                        public void onInit(int status) {
-                            if (status != TextToSpeech.ERROR) {
-                                textToSpeech.setSpeechRate(0.8f);
+                    } else {
+                        textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
+                            @Override
+                            public void onInit(int status) {
+                                if (status != TextToSpeech.ERROR) {
+                                    textToSpeech.setSpeechRate(0.8f);
 //                    textToSpeech.setSpeechRate(0.8f);
-                                textToSpeech.setPitch(0.8f);
+                                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setLanguage(Locale.US);
-                                textToSpeech.setLanguage(Locale.forLanguageTag("hin"));
-                                String text = newsResponseDataList.get(position).getTitle();
-                                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-                                Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+                                    textToSpeech.setLanguage(Locale.forLanguageTag("hin"));
+                                    String text = newsResponseDataList.get(position).getTitle();
+                                    textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+                                    Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                    Log.d(TAG, "onPageSelected: page selected " + position);
+                    Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(position).getTitle());
                 }
-                Log.d(TAG, "onPageSelected: page selected " + position);
-                Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(position).getTitle());
             }
 
             @Override
