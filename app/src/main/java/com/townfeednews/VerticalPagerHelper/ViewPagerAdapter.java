@@ -1,5 +1,6 @@
 package com.townfeednews.VerticalPagerHelper;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,6 +17,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
+
     }
 
     @NonNull

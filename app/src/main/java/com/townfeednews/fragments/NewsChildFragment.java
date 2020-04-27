@@ -1,7 +1,10 @@
 package com.townfeednews.fragments;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.Html;
 import android.util.Log;
@@ -17,7 +20,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.townfeednews.BuildConfig;
 import com.townfeednews.R;
+import com.townfeednews.activity.HomeActivityMain;
 import com.townfeednews.utils.AppConstant;
 import com.townfeednews.utils.AppPrefs;
 import com.townfeednews.utils.AppPrefsMain;
@@ -37,6 +42,8 @@ public class NewsChildFragment extends Fragment {
     private ImageView shareNewsImageView;
     private ImageView speakTextImageView;
     private static final String TAG = "NewsChildFragment";
+    private Context context;
+    private boolean isVisible2User;
 
     public NewsChildFragment() {
         // Required empty public constructor
@@ -46,7 +53,8 @@ public class NewsChildFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment'
+        Log.d(TAG, "onCreateView: chal gya ");
         View view = inflater.inflate(R.layout.fragment_news_child, container, false);
         newsImageView = view.findViewById(R.id.newsImageView);
         mainTitleTextView = view.findViewById(R.id.mainTitleTextView);
@@ -70,7 +78,7 @@ public class NewsChildFragment extends Fragment {
         speakTextImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Clicked...", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Clicked...", Toast.LENGTH_SHORT).show();
                 if (AppPrefsMain.getReadNewsEnabled(getContext())) {
                     AppPrefsMain.setReadNewsEnabled(getContext(), false);
                     speakTextImageView.setImageResource(R.drawable.ic_text_to_speak_mute);
@@ -79,17 +87,6 @@ public class NewsChildFragment extends Fragment {
                     }
                 } else {
                     AppPrefsMain.setReadNewsEnabled(getContext(), true);
-
-                }
-
-                //Main Text goes here.
-                if (textToSpeech != null) {
-                    if (AppConstant.textToSpeech.isSpeaking()) {
-                        AppConstant.textToSpeech.stop();
-                        AppPrefsMain.setReadNewsEnabled(getContext(), false);
-
-                    }
-                } else {
                     if (AppPrefsMain.getUserLanguage(getContext()).equalsIgnoreCase("eng")) {
                         speakTextImageView.setImageResource(R.drawable.ic_text_to_speak);
                         textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
@@ -128,6 +125,17 @@ public class NewsChildFragment extends Fragment {
                         });
                     }
                 }
+
+                //Main Text goes here.
+//                if (textToSpeech != null) {
+//                    if (AppConstant.textToSpeech.isSpeaking()) {
+//                        AppConstant.textToSpeech.stop();
+//                        AppPrefsMain.setReadNewsEnabled(getContext(), false);
+//
+//                    }
+//                } else {
+//
+//                }
             }
         });
 
@@ -161,11 +169,26 @@ public class NewsChildFragment extends Fragment {
         shareNewsImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getContext(), "Clicked..", Toast.LENGTH_SHORT).show();
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/html");  //image/jpeg, audio/mpeg4-generic, text/html, audio/mpeg
+//                    audio/aac, audio/wav, audio/ogg, audio/midi, audio/x-ms-wma, video/mp4, video/x-msvideo
+//                    video/x-ms-wmv, image/png, image/jpeg, image/gif, .xml ->text/xml, .txt -> text/plain
+//                    .cfg -> text/plain, .csv -> text/plain, .conf -> text/plain, .rc -> text/plain
+//                    .htm -> text/html,.html -> text/html,.pdf -> application/pdf,.apk -> application/vnd.android.package-archive
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "TownFeed");
+                    String shareMessage = "\nLet me recommend you this application\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Oops ! Something went wrong. Please try after sometime.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         return view;
 
     }
+
 }

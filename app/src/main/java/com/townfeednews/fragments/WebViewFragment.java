@@ -1,6 +1,7 @@
 package com.townfeednews.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public class WebViewFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class WebViewFragment extends Fragment {
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new MyBrowser());
         return view;
+
     }
 
     private class MyBrowser extends WebViewClient {

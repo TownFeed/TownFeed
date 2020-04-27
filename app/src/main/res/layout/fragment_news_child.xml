@@ -125,6 +125,7 @@
                     android:id="@+id/speakTextImageView"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:padding="8dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="16dp"
@@ -155,6 +156,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:text="Description"
+                android:textSize="17sp"
                 android:textColor="#707070" />
 
             <!--            <LinearLayout-->

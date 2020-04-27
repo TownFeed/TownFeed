@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,6 +33,7 @@ import com.townfeednews.connection.ApiInterface;
 import com.townfeednews.connection.TownFeedBaseUrl;
 import com.townfeednews.model.news.NewsResponseData;
 import com.townfeednews.roomDB.News;
+import com.townfeednews.utils.AppConstant;
 import com.townfeednews.utils.AppPrefs;
 import com.townfeednews.utils.AppPrefsMain;
 
@@ -62,6 +65,7 @@ public class NewsContentFragment extends Fragment {
 
     public NewsContentFragment() {
         // Required empty public constructor
+
     }
 
     public NewsContentFragment(RefreshDataListener refreshDataListener) {
@@ -96,6 +100,7 @@ public class NewsContentFragment extends Fragment {
                             String text = newsResponseDataList.get(0).getTitle();
                             textToSpeech.speak(text + "\n\n" + newsResponseDataList.get(0).getDetails(), TextToSpeech.QUEUE_FLUSH, null);
                             Log.d(TAG, "onPageSelected: news Details " + newsResponseDataList.get(0).getDetails());
+
                         }
                     }
                 });
@@ -114,6 +119,7 @@ public class NewsContentFragment extends Fragment {
                             String text = newsResponseDataList.get(0).getTitle();
                             textToSpeech.speak(text + "\n\n" + newsResponseDataList.get(0).getDetails(), TextToSpeech.QUEUE_FLUSH, null);
                             Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
+
                         }
                     }
                 });
@@ -128,7 +134,6 @@ public class NewsContentFragment extends Fragment {
         viewPagerAdapter = new ViewPagerAdapter(mContext.getSupportFragmentManager());
 
         verticalViewPager.setAdapter(viewPagerAdapter);
-
         verticalViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -137,6 +142,7 @@ public class NewsContentFragment extends Fragment {
 
             @Override
             public void onPageSelected(final int position) {
+                AppConstant.webViewFragment.setCurrentItem(newsResponseDataList.get(position).getPermalink());
                 if (AppPrefsMain.getReadNewsEnabled(getContext())) {
                     if (textToSpeech.isSpeaking()) {
                         textToSpeech.stop();
@@ -152,11 +158,13 @@ public class NewsContentFragment extends Fragment {
 //                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setLanguage(Locale.US);
                                     textToSpeech.setLanguage(Locale.US);
-                                    String text = newsResponseDataList.get(position).getTitle();
+                                    String text = newsResponseDataList.get(position).getTitle()
+                                            + newsResponseDataList.get(position).getDetails();
                                     textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
                                     Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
                                 }
                             }
+
                         });
 
                     } else {
@@ -170,7 +178,7 @@ public class NewsContentFragment extends Fragment {
 //                    textToSpeech.setPitch(0.8f);
 //                    textToSpeech.setLanguage(Locale.US);
                                     textToSpeech.setLanguage(Locale.forLanguageTag("hin"));
-                                    String text = newsResponseDataList.get(position).getTitle();
+                                    String text = newsResponseDataList.get(position).getTitle() + newsResponseDataList.get(position).getDetails();
                                     textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
                                     Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(0).getTitle());
                                 }
@@ -180,6 +188,8 @@ public class NewsContentFragment extends Fragment {
                     Log.d(TAG, "onPageSelected: page selected " + position);
                     Log.d(TAG, "onPageSelected: news Title " + newsResponseDataList.get(position).getTitle());
                 }
+
+
             }
 
             @Override

@@ -74,6 +74,7 @@ import retrofit2.Response;
 import static com.townfeednews.utils.AppConstant.mainViewPager;
 import static com.townfeednews.utils.AppConstant.newsArrayList;
 import static com.townfeednews.utils.AppConstant.newsResponseDataList;
+import static com.townfeednews.utils.AppConstant.textToSpeech;
 import static com.townfeednews.utils.AppConstant.userProfileUpdated;
 
 public class HomeActivityMain extends AppCompatActivity {
@@ -171,6 +172,8 @@ public class HomeActivityMain extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        mainViewPager = findViewById(R.id.mainViewPager);
+
 
 //      initialize navigation header view items
         initHeaderView();
@@ -314,10 +317,34 @@ public class HomeActivityMain extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     newsResponseDataList.clear();
                     newsResponseDataList.addAll(response.body().getNews());
-                    mainViewPager = findViewById(R.id.mainViewPager);
+
                     mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), refreshDataListener);
                     mainViewPager.setAdapter(mainViewPagerAdapter);
                     mainViewPager.setCurrentItem(0);
+
+                    mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+                        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                        }
+
+                        @Override
+                        public void onPageSelected(int position) {
+                            if (position == 1) {
+                                Log.d(TAG, "onPageSelected: MainView  Pager " + position);
+                                if (textToSpeech != null) {
+                                    if (textToSpeech.isSpeaking()) {
+                                        textToSpeech.stop();
+                                    }
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onPageScrollStateChanged(int state) {
+
+                        }
+                    });
 
                     AppConstant.webViewFragment.setCurrentItem(newsResponseDataList.get(0).getPermalink());
                     Log.d(TAG, "onResponse: checking body Data " + newsResponseDataList.get(0).getPermalink());
