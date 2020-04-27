@@ -149,6 +149,7 @@ public class NewsChildFragment extends Fragment {
                 .into(newsImageView);
 
         mainTitleTextView.setText(Html.fromHtml(AppConstant.newsResponseDataList.get(position).getTitle()));
+
         descriptionTextView.setText(Html.fromHtml(AppConstant.newsResponseDataList.get(position).getDetails()));
         sourceTextView.setText(AppConstant.newsResponseDataList.get(position).getSource());
         postedDateTextView.setText(AppConstant.newsResponseDataList.get(position).getDatetime());
@@ -159,12 +160,19 @@ public class NewsChildFragment extends Fragment {
             AppConstant.webViewFragment.setCurrentItem(AppConstant.newsResponseDataList.get(position - 1).getPermalink());
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 AppConstant.mainViewPager.setCurrentItem(1);
+                return false;
             }
         });
+//        view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AppConstant.mainViewPager.setCurrentItem(1);
+//            }
+//        });
 
         shareNewsImageView.setOnClickListener(new View.OnClickListener() {
             @Override

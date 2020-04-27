@@ -173,7 +173,7 @@ public class HomeActivityMain extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         mainViewPager = findViewById(R.id.mainViewPager);
-
+        // TODO: 27-04-2020 onClick
 
 //      initialize navigation header view items
         initHeaderView();

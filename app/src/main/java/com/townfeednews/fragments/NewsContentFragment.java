@@ -62,7 +62,6 @@ public class NewsContentFragment extends Fragment {
     private RefreshDataListener refreshDataListener;
     private static final String TAG = "NewsContentFragment";
 
-
     public NewsContentFragment() {
         // Required empty public constructor
 
@@ -142,7 +141,13 @@ public class NewsContentFragment extends Fragment {
 
             @Override
             public void onPageSelected(final int position) {
-                AppConstant.webViewFragment.setCurrentItem(newsResponseDataList.get(position).getPermalink());
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        AppConstant.webViewFragment.setCurrentItem(newsResponseDataList.get(position).getPermalink());
+                    }
+                };
                 if (AppPrefsMain.getReadNewsEnabled(getContext())) {
                     if (textToSpeech.isSpeaking()) {
                         textToSpeech.stop();
